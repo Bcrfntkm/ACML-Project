@@ -1,0 +1,57 @@
+# Chemical Text Annotation Agent — Configuration
+# All values can be overridden by environment variables (see comments).
+
+api:
+  # ProxyAPI base URL (OpenAI-compatible proxy)
+  # Override: CHEM_AGENT_BASE_URL
+  base_url: "https://openai.api.proxyapi.ru/v1"
+
+  # API key — leave empty here; set PROXYAPI_KEY in .env or environment
+  # Override: PROXYAPI_KEY
+  api_key: ""
+
+  # Model name (any model supported by ProxyAPI)
+  # Override: CHEM_AGENT_MODEL
+  model: "gpt-4o-mini"
+
+  # Generation parameters
+  max_tokens: 4096       # Override: CHEM_AGENT_MAX_TOKENS
+  temperature: 0.0       # Override: CHEM_AGENT_TEMPERATURE
+  timeout: 180           # seconds; Override: CHEM_AGENT_TIMEOUT
+
+rag:
+  # Set to true to enable RAG context retrieval before annotation
+  enabled: false
+
+  # Directory where the vector index is stored
+  index_dir: "Science/rag_index"
+
+  # Embedding model (sentence-transformers); falls back to TF-IDF if not installed
+  model_name: "sentence-transformers/all-MiniLM-L6-v2"
+
+  # Text chunking parameters
+  chunk_size: 500        # words per chunk
+  chunk_overlap: 50      # overlapping words between chunks
+
+  # Number of chunks to retrieve per query
+  top_k: 5
+
+annotation:
+  # Default annotation instruction when --query is not provided
+  default_query: "Identify and annotate all chemical entities in the text"
+
+  # Supported entity labels
+  labels:
+    - COMPOUND    # chemical compound (common name, formula, abbreviation)
+    - IUPAC       # IUPAC systematic name
+    - CAS         # CAS registry number
+    - REACTION    # reaction type or transformation
+    - PROPERTY    # physical/chemical property or measurement
+    - ELEMENT     # chemical element
+    - UNIT        # unit of measurement
+    - OTHER       # other chemistry-related entity
+
+parser:
+  # Absolute or relative path to the ReactionMiner parser directory
+  # The generalParser.parseFile() function is called from this location
+  parser_dir: "Science/parser/ReactionMiner"
