@@ -1,0 +1,20 @@
+# bert_rm_003: SciBERT distilled from ReactionMiner (LLaMA-2-7b + LoRA)
+# v3 data: 70 papers, 2175 samples (up from 1655 in v2)
+experiment_id: bert_rm_003
+description: "SciBERT distilled from ReactionMiner v3 silver labels (70 papers)."
+
+model_name: allenai/scibert_scivocab_cased
+task: ner
+
+train:  data/training/rm_ner_v3/train.jsonl
+val:    data/training/rm_ner_v3/val.jsonl
+labels: data/training/rm_ner_v3/labels.json
+output_dir: models/bert_rm_003_v3
+
+epochs:        20
+batch_size:    8
+max_length:    512
+learning_rate: 2.0e-5
+warmup_ratio:  0.1
+weight_decay:  0.01
+seed:          42

@@ -1,0 +1,19 @@
+# bert_002: SciBERT — гипотеза: лучше на химических текстах
+experiment_id: bert_002
+description: "SciBERT fine-tuned on LLM annotations (NER task). Pretrained on scientific papers."
+
+model_name: allenai/scibert_scivocab_cased
+task: ner
+
+train:  data/training/ner/train.jsonl
+val:    data/training/ner/val.jsonl
+labels: data/training/ner/labels.json
+output_dir: models/bert_002
+
+epochs:        3
+batch_size:    16
+max_length:    512
+learning_rate: 2.0e-5
+warmup_ratio:  0.1
+weight_decay:  0.01
+seed:          42

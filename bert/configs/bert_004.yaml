@@ -1,0 +1,19 @@
+# bert_004: SciBERT для задачи извлечения свойств (5-ролевая схема)
+experiment_id: bert_004
+description: "SciBERT fine-tuned on property records (property role labeling task)."
+
+model_name: allenai/scibert_scivocab_cased
+task: property
+
+train:  data/training/property/train.jsonl
+val:    data/training/property/val.jsonl
+labels: data/training/property/labels.json
+output_dir: models/bert_004
+
+epochs:        5
+batch_size:    16
+max_length:    512
+learning_rate: 2.0e-5
+warmup_ratio:  0.1
+weight_decay:  0.01
+seed:          42

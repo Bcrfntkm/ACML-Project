@@ -1,0 +1,26 @@
+# ── Core LLM / Agent framework ──────────────────────────────────────────────
+langchain-core>=0.2.0
+langchain-openai>=0.1.0
+langgraph>=0.1.0
+
+# ── Configuration ────────────────────────────────────────────────────────────
+pyyaml>=6.0
+python-dotenv>=1.0.0
+
+# ── RAG — embedding backend (install at least one) ───────────────────────────
+numpy>=1.24.0
+sentence-transformers>=2.2.0   # preferred: dense embeddings
+scikit-learn>=1.3.0            # fallback: TF-IDF sparse embeddings
+
+# ── PDF parser (ReactionMiner pdf2text) ──────────────────────────────────────
+# The parser uses a Java binary (SymbolScraper); no extra Python PDF libs needed.
+# Required by parser/ReactionMiner:
+spacy>=3.5.0
+# python -m spacy download en_core_web_sm
+
+# ── Optional: ReactionMiner full pipeline (segmentation + extraction) ─────────
+# Uncomment if you want to use TopicSegmentor or ReactionExtractor:
+# torch<=2.0.1
+# peft>=0.4.0
+# protobuf
+# sentence_transformers  # already listed above

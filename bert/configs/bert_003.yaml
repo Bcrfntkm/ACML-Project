@@ -1,0 +1,19 @@
+# bert_003: BioBERT — biomedical/chemical domain pre-training
+experiment_id: bert_003
+description: "BioBERT fine-tuned on LLM annotations v2 (NER, 203 paragraphs). Biomedical domain pre-training."
+
+model_name: dmis-lab/biobert-base-cased-v1.2
+task: ner
+
+train:  data/training/ner_v2/train.jsonl
+val:    data/training/ner_v2/val.jsonl
+labels: data/training/ner_v2/labels.json
+output_dir: models/bert_003
+
+epochs:        10
+batch_size:    8
+max_length:    512
+learning_rate: 2.0e-5
+warmup_ratio:  0.1
+weight_decay:  0.01
+seed:          42
